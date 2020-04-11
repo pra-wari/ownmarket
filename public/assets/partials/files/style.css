@@ -1,0 +1,138 @@
+.notification {
+    color: #9d9d9d;
+    text-decoration: none;
+    padding: 17px 20px;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+  }
+  .notification:hover, .active{
+      color : #fff;
+  }
+  
+  .notification .badge {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    padding: 2px 7px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size : 10px;
+  }
+  
+  .delete_notification{
+    font-size:18px;
+    color:red !important;
+    position: absolute;
+    right:5%;
+  }
+  
+  h4{
+    font-size: 14px;
+  }
+  
+  h2{
+    font-size: 22px;
+  }
+  
+  /*** Dashboard **/
+  
+  .table_odd{
+    background-color: #f9f9f9;
+    width:100%;
+    margin-bottom:15px;
+  }
+  
+  .table_even{
+    width:100%;
+    margin-bottom:15px;
+  }
+  
+  .table_odd td{
+    padding:15px;
+  }
+  
+  
+  .table_even td{
+    padding:15px;
+  }
+  
+  /*** Payments **/
+  .total_payment{
+    margin:10px 0;
+    text-align:center;
+  }
+  .payment_history{
+    height: 500px;
+    border: thin solid grey;
+    overflow:scroll;
+  }
+  
+  .payment_history_heading{
+    padding-top:15px;
+    font-size:18px;
+    text-align:center;
+  }
+  
+  .payment_history_li thead tr th{
+    text-align: center;
+  }
+  
+  .payment_history_li thead tr th:first-child{
+    text-align: left;
+  }
+  
+  .payment_history_li tr td{
+    text-align: center;
+  }
+  
+  .payment_history_li tr td:first-child{
+    text-align: left;
+  }
+  
+  /** Interview question ***/
+  .download-btn {
+    margin:10px 0;
+    padding: 0;
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
+  }
+  
+  .download-btn-text {
+    background-color: #FFF;
+    padding: 11px;
+    height: auto;
+    -webkit-box-shadow: inset 0px 0px 0px 10px #f00;
+    -moz-box-shadow: inset 0px 0px 0px 5px #FDAF1A;
+    box-shadow: inset 0px 0px 0px 2px #FDAF1A;
+  }
+  
+  .download-btn-text a{
+    font-size:16px;
+    color:black;
+    text-decoration: none;
+  }
+  
+  .download-btn-text:hover{
+     background-color:#FDAF1A;
+  }
+  
+  .download-icon-container {
+    padding: 14px;
+    height: auto;
+    background-color: #FDAF1A;
+  }
+  
+  .download-icon-container a{
+    color:black;
+    font-size:16px;
+   }
+  
+  .download-icon-container a:hover {
+    color:white
+   }
+  .delete_notification{
+    cursor: pointer;
+  }
