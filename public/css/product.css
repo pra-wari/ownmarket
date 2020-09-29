@@ -1,0 +1,69 @@
+.btn-lg{
+    width: 46%;
+    margin: 7px;
+    float: left;
+}
+.btn-lg:hover{
+    background-color:antiquewhite;
+    width: 47%;
+    margin-top: 11px;
+}
+.img-rounded{
+    width:100%;
+    height:550px;
+}
+
+.brand{
+    font-family: sans-serif;
+    color: darkgray;
+    font-weight: 600;
+  
+ }
+
+ .name{
+     /* white-space: nowrap; */
+     color:darkcyan;
+     margin-top:5px;
+ }
+
+ .price{
+    color: grey;
+    font-weight: 600;
+    
+ }
+ .mark_price{
+    color: grey;
+   margin-left: 25px;
+   font-size:15px;
+ }
+ .discount{
+    margin: -2px;
+    color: yellowgreen;
+    font-size:17px;
+
+ }
+.description{
+    
+  
+    color: cadetblue;
+    font-size: 24px;
+}
+
+ .product-detail{
+    font-size: 28px;
+    font-family: sans-serif;
+    font-style: oblique;
+ }
+
+ 
+ 
+ .comment{
+    margin-top: 19px;
+    font-family: inherit;
+    font-size: 14px;
+    border-bottom: 1px solid darkgray;
+
+ }
+ .reviewer{
+     font-weight: bolder;
+ }

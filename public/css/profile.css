@@ -1,0 +1,35 @@
+.profileImageUpload img{
+    height: 410px;
+    width: 418px;
+}
+
+.profileImageUpload img:hover{
+    cursor: pointer;
+    opacity: 0.8;
+    border:2px dashed;
+}
+.user-detail{
+    margin-top:17%;
+}
+
+.btn{
+    width: 27%;
+    margin: 2%;
+    background: rgb(14, 148, 189);
+    color: oldlace;
+    float: left;
+    padding: 1%;
+}
+
+.btn:hover{
+    /* background:tan; */
+    box-shadow: 1px 1px 4px 0px brown;
+}
+
+.updateBtn{
+    transform: translate(28px, 12px);
+}
+
+.edit-details,.updatePassword{
+    display: none;
+}
