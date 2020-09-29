@@ -131,10 +131,11 @@ class ProductController extends Controller
 
     }
 
-    public function removeProduct(Request $request){
-        $id = $request->input('item_id');
-        $item = Cart::find($id)->first();
-        $item->delete();
+    public function removeProduct(Request $request)
+    {
+     
+        $cart_item = Cart::find($request->item_id);
+        $cart_item->delete();
         return 1;
         
     }
