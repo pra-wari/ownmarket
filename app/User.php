@@ -1,6 +1,8 @@
 <?php
 
 namespace App;
+use App\Product;
+
 
 
 use Illuminate\Notifications\Notifiable;
@@ -8,6 +10,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+
+
     // relation with Permissions
     public function permissionsGroup()
     {
@@ -27,14 +31,10 @@ class User extends Authenticatable
         'email',
         'google_id',
         'password',
-        'photo',
-        'permissions_id',
-        'status',
-        'permissions',
-        'connect_email',
-        'connect_password',
-        'provider_id',
-        'provider',
+        'google_picture_link',
+        'contact',
+        'role',
+        'access',
         'access_token'
     ];
 
@@ -65,24 +65,23 @@ class User extends Authenticatable
         return $check;
 
     }
-    // public function consultant()
-    //  {
-    //      return $this->hasOne('App\Consultant');
-    //  }
-    //  public function client(){
-    //      return $this->hasOne('App\Client');
-    //  }
+    
 
-     public function client()
-    {
-        // return $this->hasMany('App\Client', 'client_id', 'id')->select( array('*') );
-        return $this->hasManyThrough('App\Client', 'App\User', 'id', 'client_id', 'id', 'id')->select( array('*') );
+    public function roles(){
+        return $this->belongsToMany('App\Role');
+    }
+     
+
+    public function products(){
+        return $this->hasMany('App\Product','user_id','id');
+    }
+   
+    public function carts(){
+        return $this->hasMany('App\Cart','user_id','id');
     }
 
-    public function consultant()
-    {
-        // return $this->hasOne('App\Consultant', 'consultant_id', 'id');
-        return $this->hasManyThrough('App\Consultant', 'App\User', 'id', 'consultant_id', 'id', 'id')->select( array('*') );
+    public function comments(){
+        return $this->hasMany('App\Comment','user_id','id');
     }
 }
  

@@ -85,6 +85,54 @@ jQuery(document).ready(function($) {
 		} 
 		
 	});
+
+	//load content
+	$(".left-menu-item").click(function(){
+		$("#overlay").show();
+		$(".left-menu-item").removeClass('active');
+		$(this).addClass('active');
+		var div_id = $(this).data('right-panel');
+		
+		$.ajax({
+			url:'/api/main-dashboard',
+			type:'POST',
+			async:false,
+			data:{
+				"div_id":div_id
+			},
+			headers:{
+				'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+			},
+			success:function(response){
+				$("#overlay").hide();
+				response = JSON.parse(response);
+				$(".main-content").replaceWith(response.html);
+			
+			}
+		});
+	});
+
+	// on click event of product on dashboard
+
+	$(".products").click(function(){
+		$("#overlay").show();
+		var product_id = $(this).attr('id');
+		$.ajax({
+			type:"POST",
+			url:"api/product",
+			data:{
+				"id":product_id
+			},
+			headers:{
+				'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+			},
+			success:function(response){
+				$("#overlay").hide();
+				response = JSON.parse(response);
+				$(".main-content").replaceWith(response.html);
+			}
+		});
+	});
   
  
 });

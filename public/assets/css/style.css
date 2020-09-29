@@ -885,7 +885,11 @@ aside.left-panel {
 .right-panel .navbar-brand {
   line-height: 42px; }
   .right-panel .navbar-brand img {
-    max-width: 145px; }
+    
+    max-width: 145px;
+    height: 96px;
+    transform: translate(31px, -37px);
+  }
   .right-panel .navbar-brand.hidden {
     display: none; }
 
@@ -996,7 +1000,7 @@ header .form-inline {
       height: 15px;
       width: 15px;
       line-height: 15px;
-      right: 0;
+      right: -11px;;
       top: 12px;
       position: absolute; }
     .header-left .dropdown .dropdown-toggle:active, .header-left .dropdown .dropdown-toggle:focus, .header-left .dropdown .dropdown-toggle:visited {
@@ -1080,7 +1084,9 @@ header .form-inline {
 
 .for-notification .dropdown-menu .dropdown-item {
   padding: 5px 15px !important;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis; 
+  left: -8px;
+  top: 8px;}
   .for-notification .dropdown-menu .dropdown-item i {
     float: left;
     font-size: 14px;
@@ -2100,6 +2106,7 @@ footer.site-footer {
     footer.site-footer .footer-inner a {
       color: #6a7074; }
 
+
 .calender-cont {
   position: relative;
   padding-top: 20px; }
@@ -2511,5 +2518,58 @@ footer.site-footer {
   text-align:left !important;
 }
 .content {
-  margin-top: -10% !important;
+  margin-top: 0% !important;
+}
+
+.for-notification{
+  left: -8px;
+  top: 8px;
+}
+.for-message{
+ 
+    top: 9px;
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  z-index: 99999999;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+}
+
+#loader {
+  position: absolute;
+  top: 50%;
+  left: 33%;
+  border: 8px solid springgreen;
+  border-top: 8px solid #777;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 2s linear infinite;
+}
+
+/* for add_product blade file */
+.productImageUpload img{
+  width: 697px;
+  height: 544px;
+  opacity:0.5;
+}
+
+.productImageUpload img:hover{
+  opacity:0.8;
+  cursor: pointer;
+}
+
+/* for footer */
+#footer{
+  text-align: center;
+  font-weight: bold;
+  width: 100%;
+  background-color: blueviolet;
+  padding: 10px;
+  color: whitesmoke;
 }

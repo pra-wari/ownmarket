@@ -1,111 +1,161 @@
 $(document).ready(function(){
-    $("#editBtn").click(function(){
-        $(".profile").slideUp('slow');
-        $("#editProfile").slideDown('slow');
+    $(document).on('change','input[type="file"]',function(){
+        // $("#photo").attr("src","images/logo.png");
+
+        let reader = new FileReader();
+        reader.onload = (e)=>{
+            $("#photo").attr("src",e.target.result);
+        }
+
+        reader.readAsDataURL(this.files[0]);
+       
     });
-    $("#changeBtn").click(function(){
-        $(".profile").slideUp('slow');
-        $("#changePassword").slideDown('slow');
+
+    $(document).on('click','#edit',function(e){
+        e.preventDefault();
+        
+        if($(".edit-details").is(":hidden")){
+            $(".user-detail").slideUp('slow');
+            $(".edit-details").slideDown('slow');
+        }
     });
-    $("#contactBtn").click(function(){
-        $(".profile").slideUp('slow');
-        $("#mimessay").slideDown('slow');
+
+    $(document).on('click','#change',function(e){
+        e.preventDefault();
+        if($(".updatePassword").is(":hidden")){
+            $(".user-detail").slideUp('slow');
+            $(".updatePassword").slideDown('slow');
+        }
     });
     
-    $("#photo").change(function(){
-            
-        $("#upload").slideDown('slow');
+    $(document).on('click',".close",function(){
+        $(".alert").hide();
     });
-    $("#upload").click(function(){
-        $(this).hide(200);
-   });
 
-   $("#dropdown").on('change',function(){
-        var payment_method = $(this).val();
-        if(payment_method=="Bank Transfer"){
-            $("#paypal_details").slideUp('slow');
-            $("#bank_details").slideToggle('slow');
-            
-
-        }
-        if(payment_method=="Paypal"){
-            $("#bank_details").slideUp('slow');
-            $("#paypal_details").slideToggle('slow');
-
-        }
-   });
-   
-
-// ****edit profile****
-   $(".editForm").on('submit',function(event){
-        event.preventDefault();
-
-       var userId = $("#userId").val();
-       var payment_method=$("#dropdown").val();
-       var payment_details;
-       if(payment_method=="Bank Transfer"){
-            payment_details = $("#bank_details").val();
-       }
-       if(payment_method=="Paypal"){
-           payment_details = $("#paypal_details").val();
-       }
-     
-       
+    $(document).on('click','.updateBtn',function(){
+        $("#overlay").show();
+        var data = new FormData();
+        var token = $('meta[name="csrf-token"]').attr('content');
+        var name = $('input[name="name"]').val();
+        var contact = $('input[name="number"]').val();
+        var currentPassword = $('input[name="current"]').val();
+        var newPassword = $('input[name="new"]').val();
+        var confirmPassword = $('input[name="confirm"]').val();
+        var file = $('input[name="profileImage"]').prop('files')[0];
+        data.append("token",token);
+        data.append('name',name);
+        data.append('contact',contact);
+        data.append('current',currentPassword);
+        data.append('new',newPassword);
+        data.append('confirm',confirmPassword);
+        data.append('file',file);
         $.ajax({
             type:"post",
-            url:'/updateProfile/'+userId,
-           
-            data: { _token: $('meta[name="csrf-token"]').attr('content'),
-                    name:$("#name").val(),
-                    phone:$("#phone").val(),
-                    payment_mode:payment_method,
-                    paymentDetails:payment_details,
-                    action:"editprofile",
-                },
-            success:function(data){
-                $("#editProfile").slideUp('slow');
-                $("#showProfile table").children().children().first().children().last().text($("#name").val());
-                $("#showProfile table").children().children().last().prev().children().last().text($("#phone").val());
-                $("#showProfile table").children().children().last().children().last().text(payment_method);
-                $("#showProfile").slideDown('slow');
-                //alert("Your profile updated successfully");
+            url:"/api/update_user_detail",
+            cache:false,
+            contentType:false,
+            processData:false,
+            data:data,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+            success:function(response){
+                $("#overlay").hide();
+                $(".alert").empty();
+                $(".alert").append('<div class="close">&times;</div>');
+                if(response.success){
+                    $(".alert-success").append("<p>"+response.message+"</p>");
+                    $(".alert-success").show();
+                    setTimeout(function(){
+                        $(".alert").slideUp('slow');
+                    },3000);
 
-            },
-            error:function(){
-                alert("Unable to update your profile");
-            }
-        });
-    }); 
-    //*********change password****** */
-    $(".passwordForm").on('submit',function(event){
-        event.preventDefault();
-        var userId = $("#userId").val();
-        $.ajax({
-            type:"post",
-            url:"/updateProfile/"+userId,
-            data:{
-                _token:$('meta[name="csrf-token"]').attr('content'),
-                current:$("#current").val(),
-                new:$("#new").val(),
-                confirm:$("#confirm").val(),
-                action:"changePassword"
-            },
-            success:function(data){
-                alert(data.status);
-                $("#current").val("");;
-                $("#new").val("");
-                $("#confirm").val("");
-                if(data.key==1){
-                    $("#changePassword").slideUp();
-                    $("#showProfile").slideDown();
+                }else{
+                    $(".alert-warning").append("<p>Something went dfgg wrong!</p>");
+                    $(".alert-warning").show();
+                    setTimeout(function(){
+                        $(".alert").slideUp('slow');
+                    },3000);
 
                 }
+            },
+            error:function(){
+                $(".alert").empty();
+                $(".alert").append('<div class="close">&times;</div>');
+                $(".alert-warning").append("<p>Something went wrong!</p>");
+                $(".alert-warning").show();
+                setTimeout(function(){
+                    $(".alert").slideUp('slow');
+                },3000);
                 
-               
-
             }
         });
+
+
     });
-    
-    
+
+
+
+
+    // $(".updateBtn").click(function(){
+    //     $("#overlay").show();
+    //     var data = new FormData();
+    //     var token = $('meta[name="csrf-token"]').attr('content');
+    //     var name = $('input[name="name"]').val();
+    //     var contact = $('input[name="number"]').val();
+    //     var currentPassword = $('input[name="current"]').val();
+    //     var newPassword = $('input[name="new"]').val();
+    //     var confirmPassword = $('input[name="confirm"]').val();
+    //     var file = $('input[name="profileImage"]').prop('files')[0];
+    //     data.append("token",token);
+    //     data.append('name',name);
+    //     data.append('contact',contact);
+    //     data.append('current',currentPassword);
+    //     data.append('new',newPassword);
+    //     data.append('confirm',confirmPassword);
+    //     data.append('file',file);
+    //     $.ajax({
+    //         type:"post",
+    //         url:"/api/update_user_detail",
+    //         cache:false,
+    //         contentType:false,
+    //         processData:false,
+    //         data:data,
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //           },
+    //         success:function(response){
+    //             $("#overlay").hide();
+    //             $(".alert").empty();
+    //             $(".alert").append('<div class="close">&times;</div>');
+    //             if(response.success){
+    //                 $(".alert-success").append("<p>"+response.message+"</p>");
+    //                 $(".alert-success").show();
+    //                 setTimeout(function(){
+    //                     $(".alert").slideUp('slow');
+    //                 },3000);
+
+    //             }else{
+    //                 $(".alert-warning").append("<p>Something went dfgg wrong!</p>");
+    //                 $(".alert-warning").show();
+    //                 setTimeout(function(){
+    //                     $(".alert").slideUp('slow');
+    //                 },3000);
+
+    //             }
+    //         },
+    //         error:function(){
+    //             $(".alert").empty();
+    //             $(".alert").append('<div class="close">&times;</div>');
+    //             $(".alert-warning").append("<p>Something went wrong!</p>");
+    //             $(".alert-warning").show();
+    //             setTimeout(function(){
+    //                 $(".alert").slideUp('slow');
+    //             },3000);
+                
+    //         }
+    //     });
+
+
+    // });
 });

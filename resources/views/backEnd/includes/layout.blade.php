@@ -5,6 +5,7 @@
 @include('backEnd.includes.header')
  <!-- Content -->
  <div class="content">
+ <div id="overlay"><div id="loader"></div></div>
 
     @yield('content')
 
@@ -14,4 +15,3 @@
 <div class="clearfix"></div>
 
 @include('backEnd.includes.footer')
-@include('backEnd.includes.foot')

@@ -8,7 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>MiM Essay CRM</title>
+    <title>Ownmarket</title>
+    <link rel="shortcut icon" href="images/logo.png" type="images/png">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

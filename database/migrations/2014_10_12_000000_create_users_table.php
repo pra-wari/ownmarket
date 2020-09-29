@@ -24,12 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('google_link')->nullable();
             $table->string('google_picture_link')->nullable();
             $table->string('contact')->nullable();
-            $table->string('skype_id')->nullable();
-            $table->string('role');
             $table->string('password');
-            $table->string('old_password_1')->nullable();
-            $table->string('old_password_2')->nullable();
-            $table->string('pic_url');
             $table->tinyInteger('access');
             $table->rememberToken();
             $table->timestamps();

@@ -7,8 +7,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>MiM Essay CRM</title>
-    <meta name="description" content="MiM Essay CRM">
+    <title>Own Market</title>
+    <link rel="shortcut icon" href="images/logo.png" type="images/png">
+    <meta name="description" content="Own Market">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
 
@@ -31,7 +32,7 @@
 
     <!-- ***************** -->
     
-    
+   
 
     <!-- *********** -->
    <style>

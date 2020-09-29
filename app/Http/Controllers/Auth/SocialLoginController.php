@@ -7,6 +7,8 @@ namespace App\Http\Controllers\Auth;
 
 
 use App\User;
+use App\Role;
+use Illuminate\Support\Str;
 
 use App\Http\Controllers\Controller;
 
@@ -77,15 +79,21 @@ class SocialLoginController extends Controller
             
         } else {
            
-            return redirect()->to('/login');
+           
             // create a new user
-            // $newUser                  = new User;
-            // $newUser->name            = $user->name;
-            // $newUser->email           = $user->email;
-            // $newUser->google_id       = $user->id;
-            // $newUser->save();
-            // auth()->login($newUser, true);
-            // return redirect()->to('/home');
+            $newUser                  = new User;
+            $newUser->name            = $user->name;
+            $newUser->email           = $user->email;
+            $newUser->google_id       = $user->id;
+            $newUser->google_picture_link = $user->avatar;
+            
+            $newUser->password = str::random();
+            $newUser->access = 1;
+            $newUser->save();
+            $role = Role::find(1);
+            $newUser->roles()->save($role);
+            auth()->login($newUser, true);
+            return redirect()->to('/home');
         }
         return redirect()->to('/login');
     }
